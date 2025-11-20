@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Liste des films vues</h1>
+    <button class="btn-modifier">Ajouter</button>
         <table>
         <tr>
             <th>Titre</th>
@@ -16,28 +17,16 @@
             <th>Avis perso</th>
             <th>Modifier/Supprimer</th>
         </tr>
-        <tr>
-            <td>Inception</td>
-            <td>Christopher Nolan</td>
-            <td>2010</td>
-            <td>Un voleur qui pénètre dans les rêves des autres pour voler leurs secrets.</td>
-            <td><button class="btn-modifier">Modifier</button></td>
-        </tr>
-        <tr>
-            <td>Le Fabuleux Destin d'Amélie Poulain</td>
-            <td>Jean-Pierre Jeunet</td>
-            <td>2001</td>
-            <td>Une jeune femme décide de changer la vie de ceux qui l'entourent avec des actions délicates.</td>
-            <td><button class="btn-modifier">Modifier</button></td>
-        </tr>
-        <tr>
-            <td>Parasite</td>
-            <td>Bong Joon-ho</td>
-            <td>2019</td>
-            <td>Une famille pauvre se fait passer pour des employés d'une famille riche.</td>
-            <td><button class="btn-modifier">Modifier</button></td>
-        </tr>
+            {% for film in list_films %}
+                <tr>
+                    <td>{{ film.titre }}</td>
+                    <td>{{ film.auteur }}</td>
+                    <td>{{ film.get_date_vue }}</td>
+                    <td>{{ film.avis }}</td>
+                    <td><button class="btn-modifier">Modifier</button></td>
+                </tr>
+            {% endfor %}
+
     </table>
-    <button class="btn-modifier">Ajouter</button>
 </body>
 </html>
