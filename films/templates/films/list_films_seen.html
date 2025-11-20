@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des films vues</title>
+    <link rel="stylesheet" href="{% static 'css/films.css' %}">
+</head>
+<body>
+    <h1>Liste des films vues</h1>
+        <table>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Date du visionnage</th>
+            <th>Avis perso</th>
+            <th>Modifier/Supprimer</th>
+        </tr>
+        <tr>
+            <td>Inception</td>
+            <td>Christopher Nolan</td>
+            <td>2010</td>
+            <td>Un voleur qui pénètre dans les rêves des autres pour voler leurs secrets.</td>
+            <td><button class="btn-modifier">Modifier</button></td>
+        </tr>
+        <tr>
+            <td>Le Fabuleux Destin d'Amélie Poulain</td>
+            <td>Jean-Pierre Jeunet</td>
+            <td>2001</td>
+            <td>Une jeune femme décide de changer la vie de ceux qui l'entourent avec des actions délicates.</td>
+            <td><button class="btn-modifier">Modifier</button></td>
+        </tr>
+        <tr>
+            <td>Parasite</td>
+            <td>Bong Joon-ho</td>
+            <td>2019</td>
+            <td>Une famille pauvre se fait passer pour des employés d'une famille riche.</td>
+            <td><button class="btn-modifier">Modifier</button></td>
+        </tr>
+    </table>
+    <button class="btn-modifier">Ajouter</button>
+</body>
+</html>
