@@ -1,16 +1,7 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Liste des films vues</title>
-    <link rel="stylesheet" href="{% static 'css/films.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-</head>
-<body>
+{% extends 'films/base.html' %}
+{% block content %}
     <h1>Liste des films vues</h1>
-    <button class="btn-modifier">Ajouter</button>
+    <a href="{% url 'ajout_film' %}"><button class="btn-modifier">Ajouter</button></a>
         <table>
         <tr>
             <th>Titre</th>
@@ -25,9 +16,8 @@
                     <td>{{ film.auteur }}</td>
                     <td>{{ film.get_date_vue }}</td>
                     <td>{{ film.avis }}</td>
-                    <td><button class="btn-modifier">Modifier</button></td>
+                    <td><a href="{% url 'modif_film' pk=film.pk %}"><button class="btn-modifier">Modifier</button></a></td>
                 </tr>
             {% endfor %}
     </table>
-</body>
-</html>
+{% endblock %}
