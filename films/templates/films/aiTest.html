@@ -1,0 +1,27 @@
+{% extends 'films/base.html' %}
+{% block content %}
+    <title>AI Test</title>
+    <div class="container">
+        <h1 class="text-center mb-4">AI List</h1>
+        <a href="{% url 'list_films_seen' %}" class="btn btn-primary mb-3">Page principal</a>
+        <a href="{% url 'add_ai' %}" class="btn btn-primary mb-3">Add task</a>
+        <ul class="list-group">
+            {% for ai_item in ai_items %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <STRONG>{{ ai_item.description }}</STRONG>
+                            <br>
+                            <small>Réponse de l'IA :</small>
+                            <br>
+                            <span>{{ ai_item.steps }}</span>
+                        </div>
+                        <div>
+                            <a href="{% url 'prompt_delete' pk=ai_item.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                </li>
+            {%  endfor %}
+        </ul>
+    </div>
+{% endblock %}

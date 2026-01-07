@@ -13,3 +13,8 @@ class Film(models.Model):
 
     def __str__(self):
         return self.titre
+
+class AIItem(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(default="")
+    steps = models.TextField(default="")

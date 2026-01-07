@@ -1,6 +1,7 @@
 {% extends 'films/base.html' %}
 {% block content %}
     <h1>Liste des films vues</h1>
+    <a href="{% url 'aiTest' %}" class="btn-modifier">AI Test</a>
     <a href="{% url 'ajout_film' %}"><button class="btn-modifier">Ajouter</button></a>
         <table>
         <tr>
