@@ -70,23 +70,17 @@ def prompt_delete(request, pk):
     return redirect("aiTest")
 
 def search_films_api(request):
-    """
-    GET ?q=... -> renvoie liste JSON d'objets films.
-    """
+
     q = request.GET.get('q', '').strip()
+    # requète sql en fontion de q si vide ou pas
     if q == '':
-        qs = Film.objects.all().order_by('-dateVue')[:100]
+        qs = Film.objects.all().order_by('-dateVue')[:10]
     else:
         qs = (Film.objects.filter(titre__icontains=q) | Film.objects.filter(auteur__icontains=q)).order_by('-dateVue')[:200]
 
     result = []
     for film in qs:
         date_str = ''
-        if getattr(film, 'dateVue', None):
-            try:
-                date_str = film.dateVue.isoformat()
-            except Exception:
-                date_str = str(film.dateVue)
         result.append({
             'id': film.pk,
             'titre': getattr(film, 'titre', '') or '',
@@ -94,4 +88,6 @@ def search_films_api(request):
             'dateVue': date_str,
             'avis': getattr(film, 'avis', '') or '',
         })
+
+    # 4) renvoyer JsonResponse (safe=False car on renvoie une liste)
     return JsonResponse(result, safe=False)

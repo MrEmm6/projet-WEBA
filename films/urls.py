@@ -9,6 +9,6 @@ urlpatterns = [
     path("film/ai/add", views.add_ai, name="add_ai"),
     path('film/ai/<int:pk>/', views.prompt_delete, name='prompt_delete'),
 
-    # ... nouvelle route API pour la recherche ...
+    # Route API simple : GET /api/films/search/?q=... renvoie JSON (utilisée par recherchefilm.js)
     path('api/films/search/', views.search_films_api, name='search_films_api'),
 ]

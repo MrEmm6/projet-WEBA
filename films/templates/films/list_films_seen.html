@@ -22,19 +22,17 @@
             {% endfor %}
     </table>
 
-    <!-- SECTION DE RECHERCHE SIMPLE -->
     <section id="search-section" data-search-url="{% url 'search_films_api' %}" style="margin-top:1.5rem;">
         <h2>Recherche de films</h2>
         <input type="text" id="search-input" placeholder="Titre ou auteur..." />
-        <button id="btn-search">Rechercher</button>
+        <button id="btn-search" class="btn-modifier">Rechercher</button>
         <p id="search-log" style="font-size:0.9rem;color:#444;"></p>
-
         <table id="search-results" border="1" style="margin-top:1rem; width:100%; border-collapse:collapse;">
             <thead>
                 <tr><th>Titre</th><th>Auteur</th><th>Date</th><th>Avis</th></tr>
             </thead>
             <tbody>
-                <!-- résultats ajoutés dynamiquement -->
+               <!-- Les résultats de la recherche seront insérés ici par JavaScript -->
             </tbody>
         </table>
     </section>
