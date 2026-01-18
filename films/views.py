@@ -1,6 +1,6 @@
 import uuid
 
-import ollama
+from django.http import JsonResponse
 from django.template.defaultfilters import title
 
 from .forms import FilmForm
@@ -68,3 +68,30 @@ def prompt_delete(request, pk):
     post = get_object_or_404(AIItem, pk=pk)
     post.delete()
     return redirect("aiTest")
+
+def search_films_api(request):
+    """
+    GET ?q=... -> renvoie liste JSON d'objets films.
+    """
+    q = request.GET.get('q', '').strip()
+    if q == '':
+        qs = Film.objects.all().order_by('-dateVue')[:100]
+    else:
+        qs = (Film.objects.filter(titre__icontains=q) | Film.objects.filter(auteur__icontains=q)).order_by('-dateVue')[:200]
+
+    result = []
+    for film in qs:
+        date_str = ''
+        if getattr(film, 'dateVue', None):
+            try:
+                date_str = film.dateVue.isoformat()
+            except Exception:
+                date_str = str(film.dateVue)
+        result.append({
+            'id': film.pk,
+            'titre': getattr(film, 'titre', '') or '',
+            'auteur': getattr(film, 'auteur', '') or '',
+            'dateVue': date_str,
+            'avis': getattr(film, 'avis', '') or '',
+        })
+    return JsonResponse(result, safe=False)

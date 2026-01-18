@@ -8,4 +8,7 @@ urlpatterns = [
     path('film/ai', views.ai_test, name='aiTest'),
     path("film/ai/add", views.add_ai, name="add_ai"),
     path('film/ai/<int:pk>/', views.prompt_delete, name='prompt_delete'),
+
+    # ... nouvelle route API pour la recherche ...
+    path('api/films/search/', views.search_films_api, name='search_films_api'),
 ]
